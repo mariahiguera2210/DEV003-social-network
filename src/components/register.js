@@ -1,4 +1,4 @@
-import { register } from '../lib/firebase.js';
+import { register, crearDocumentoUsuario } from '../lib/firebase.js';
 
 export const RegisterComponent = (onNavigate) => {
   const contenedor = document.createElement('div');
@@ -6,7 +6,7 @@ export const RegisterComponent = (onNavigate) => {
   contenedor.id = 'viewconteiner';
 
   const imageLogo = document.createElement('img');
-  imageLogo.src = 'imagenes/logo.png';
+  imageLogo.src = 'https://i.postimg.cc/yYS4cYYJ/logo.png';
   imageLogo.setAttribute('class', 'imagen');
   contenedor.id = 'imagenlogo';
 
@@ -102,6 +102,8 @@ export const RegisterComponent = (onNavigate) => {
         // eslint-disable-next-line no-console
         console.log('user: ', user);
         // eslint-disable-next-line no-alert
+        // localStorage.setItem('user', JSON.stringify(user));
+        crearDocumentoUsuario(user, user.email, 'https://i.postimg.cc/fy6ZRsgH/profile.jpg');
         alert('Registro exitoso');
         onNavigate('/login');
       })

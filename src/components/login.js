@@ -3,7 +3,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import
 {
   login,
-  loginWithGoogle,
+  loginWithGoogle, crearDocumentoUsuario,
 } from '../lib/firebase';
 
 export const Login = (onNavigate) => {
@@ -11,7 +11,7 @@ export const Login = (onNavigate) => {
   main.setAttribute('class', 'contenedor');
 
   const imageLogo = document.createElement('img');
-  imageLogo.src = 'imagenes/logo.png';
+  imageLogo.src = 'https://i.postimg.cc/yYS4cYYJ/logo.png';
   imageLogo.setAttribute('class', 'imagen');
 
   const formulario = document.createElement('form');
@@ -79,9 +79,13 @@ export const Login = (onNavigate) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       console.log('token: ', token);
-      // The signed-in user info.
+
       const user = result.user;
       console.log('user: ', user);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      crearDocumentoUsuario(user, user.displayName, user.photoURL);
+
       // IdP data available using getAdditionalUserInfo(result)
       onNavigate('/wall');
     });
@@ -96,6 +100,7 @@ export const Login = (onNavigate) => {
       // eslint-disable-next-line no-console
       console.log('user: ', user);
       // eslint-disable-next-line no-alert
+      localStorage.setItem('user2', JSON.stringify(user));
       onNavigate('/wall');
     })
       .catch((error) => {
@@ -121,4 +126,4 @@ export const Login = (onNavigate) => {
   });
 
   return main;
-};
+}; // ok
