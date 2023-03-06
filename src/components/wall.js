@@ -47,10 +47,8 @@ export const Wall = (onNavigate) => {
   containerPublicaciones.className = 'containerPublicaciones';
 
   const usuario = JSON.parse(localStorage.getItem('user'));
-  // const usuario2 = JSON.parse(localStorage.getItem('user2'));
   fotoPerfil.src = usuario ? usuario.photoURL : 'https://i.postimg.cc/fy6ZRsgH/profile.jpg';
   const currentUser = usuario.uid;
-  console.log('current: ', currentUser);
 
   fotoPerfil.className = 'fotoPerfil';
   postUsuario.placeholder = 'Comparte con la comunidad PlantsLovers';
@@ -132,7 +130,6 @@ export const Wall = (onNavigate) => {
         counterLikes = `${post.likes.length}`;
       }
 
-      console.log('counterLikes: ', counterLikes);
       const containerCadaPost = document.createElement('div');
       containerCadaPost.className = 'containerCadaPost';
 
